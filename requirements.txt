@@ -1,0 +1,23 @@
+# FastAPI and Web Server
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+
+# Database
+pyodbc==5.0.1
+sqlalchemy==2.0.23
+
+# LLM Providers
+google-genai  # For Vertex AI
+ollama  # For local Ollama (optional)
+
+# Environment Variables
+python-dotenv==1.0.0
+
+# Data Validation
+pydantic==2.5.2
+
+# Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+httpx==0.25.2

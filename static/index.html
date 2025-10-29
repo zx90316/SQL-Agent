@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Server 自然語言查詢工具</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 SQL Server 自然語言查詢工具</h1>
+            <p class="subtitle">使用自然語言查詢您的 SQL Server 資料庫</p>
+        </header>
+
+        <main>
+            <!-- Query Input Section -->
+            <section class="query-section">
+                <div class="input-group">
+                    <label for="nl-input">請輸入您的查詢：</label>
+                    <textarea
+                        id="nl-input"
+                        rows="4"
+                        placeholder="例如：顯示最近 10 筆訂單資料&#10;或：查詢昨天所有登入失敗的記錄&#10;或：列出庫存少於 10 的產品"
+                        autofocus
+                    ></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button id="submit-btn" class="btn-primary">
+                        <span class="btn-icon">🚀</span>
+                        查詢
+                    </button>
+                    <button id="clear-btn" class="btn-secondary">
+                        <span class="btn-icon">🗑️</span>
+                        清除
+                    </button>
+                </div>
+
+                <!-- Example Queries -->
+                <div class="examples">
+                    <p class="examples-title">範例查詢：</p>
+                    <div class="example-buttons">
+                        <button class="example-btn" data-query="顯示最近 10 筆訂單">顯示最近 10 筆訂單</button>
+                        <button class="example-btn" data-query="查詢今天登入成功的使用者">查詢今天登入成功的使用者</button>
+                        <button class="example-btn" data-query="列出價格超過 1000 的產品">列出價格超過 1000 的產品</button>
+                        <button class="example-btn" data-query="統計每個類別的產品數量">統計每個類別的產品數量</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loading Indicator -->
+            <div id="loading" class="loading" style="display:none;">
+                <div class="spinner"></div>
+                <p>正在處理您的查詢...</p>
+            </div>
+
+            <!-- Error Message -->
+            <div id="error-msg" class="error-box" style="display:none;">
+                <div class="error-icon">⚠️</div>
+                <div class="error-content">
+                    <h3>查詢失敗</h3>
+                    <p id="error-text"></p>
+                </div>
+            </div>
+
+            <!-- Generated SQL Display -->
+            <section id="sql-section" class="sql-section" style="display:none;">
+                <h2>生成的 SQL 查詢</h2>
+                <div class="sql-box">
+                    <button id="copy-sql-btn" class="copy-btn" title="複製 SQL">
+                        📋 複製
+                    </button>
+                    <pre id="sql-display"></pre>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section id="results-section" class="results-section" style="display:none;">
+                <div class="results-header">
+                    <h2>查詢結果</h2>
+                    <div class="results-info">
+                        <span id="row-count" class="badge"></span>
+                        <button id="export-csv-btn" class="btn-export">
+                            💾 匯出 CSV
+                        </button>
+                    </div>
+                </div>
+                <div id="results-container" class="table-container"></div>
+            </section>
+        </main>
+
+        <footer>
+            <p>
+                ⚠️ <strong>安全提示：</strong>本工具僅支援讀取查詢 (SELECT)，不會修改資料庫內容
+            </p>
+            <p class="version">
+                Powered by Google Cloud Vertex AI | Version 1.0.0
+            </p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

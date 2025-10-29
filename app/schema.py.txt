@@ -1,0 +1,74 @@
+"""
+Database Schema Management Module
+Provides database schema information to the LLM for SQL generation.
+"""
+
+from typing import Dict, List
+
+# Example schema - Replace this with your actual database schema
+DEFAULT_SCHEMA = """
+creat ...
+
+"""
+
+
+def get_db_schema() -> str:
+    """
+    Returns the database schema information for LLM prompt.
+
+    Returns:
+        str: Database schema in CREATE TABLE format
+    """
+    return DEFAULT_SCHEMA
+
+
+def get_table_list() -> List[str]:
+    """
+    Returns a list of available tables.
+
+    Returns:
+        List[str]: List of table names
+    """
+    return [
+        "Users",
+        "LoginLogs",
+        "Products",
+        "Orders",
+        "OrderDetails"
+    ]
+
+
+def get_table_info(table_name: str) -> Dict[str, str]:
+    """
+    Returns detailed information about a specific table.
+
+    Args:
+        table_name: Name of the table
+
+    Returns:
+        Dict containing table information
+    """
+    table_info = {
+        "Users": {
+            "description": "存儲使用者基本資訊",
+            "columns": "UserID, Username, Email, LastLogin, IsActive, CreatedAt"
+        },
+        "LoginLogs": {
+            "description": "記錄使用者登入歷史",
+            "columns": "LogID, UserID, LoginTime, Success, IPAddress, UserAgent"
+        },
+        "Products": {
+            "description": "產品資訊",
+            "columns": "ProductID, ProductName, Category, Price, Stock, CreatedAt"
+        },
+        "Orders": {
+            "description": "訂單主表",
+            "columns": "OrderID, UserID, OrderDate, TotalAmount, Status"
+        },
+        "OrderDetails": {
+            "description": "訂單明細",
+            "columns": "OrderDetailID, OrderID, ProductID, Quantity, UnitPrice"
+        }
+    }
+
+    return table_info.get(table_name, {})
